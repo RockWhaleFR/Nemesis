@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rockwhale - Gestion intelligente du stress pour professionnels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #0A1628;
+            --color-accent: #FF6B35;
+            --color-light: #F5F7FA;
+            --color-text: #333333;
+            --color-white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: var(--color-white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--color-dark);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-white);
+        }
+        
+        .logo span {
+            color: var(--color-accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #1E3A5F 100%);
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #E55A2B;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .mockup {
+            width: 300px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background-color: var(--color-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--color-dark);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .benefit-item {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--color-dark);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background-color: var(--color-white);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step:not(:last-child):after {
+            content: "";
+            position: absolute;
+            top: 25px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background-color: #E5E5E5;
+            z-index: -1;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--color-light);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--color-white);
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #E5E5E5;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #666;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #1E3A5F 100%);
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-link {
+            color: var(--color-white);
+            margin: 0 15px;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .benefits-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 40px;
+            }
+            
+            .step:not(:last-child):after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Rock<span>whale</span></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Votre stress a enfin trouvé son maître.</h1>
+                <p>Rockwhale est le premier protocole intelligent de gestion du stress, conçu par et pour les esprits surchargés. Des interventions de 3 à 5 minutes, hyper-ciblées, qui s'adaptent à votre emploi du temps et à votre état d'esprit.</p>
+                <a href="#beta-form" class="cta-button">Rejoindre la Bêta Privée</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/300x600/0A1628/FFFFFF/png?text=Rockwhale+App" alt="Application Rockwhale" class="mockup">
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Votre cerveau mérite un système d'exploitation meilleur.</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🧠</div>
+                    <h3 class="benefit-title">Vous enchaînez les réunions sans temps pour souffler</h3>
+                    <p>Retrouvez des micro-pauses efficaces qui rechargent réellement vos batteries mentales.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡️</div>
+                    <h3 class="benefit-title">Vous ressentez des pics de stress qui parasitent votre concentration</h3>
+                    <p>Des protocoles rapides pour désamorcer la tension et retrouver votre focus en moins de 5 minutes.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📧</div>
+                    <h3 class="benefit-title">Vous avez du mal à déconnecter le soir</h3>
+                    <p>Votre cerveau reste en mode "on" même après le travail. Rockwhale vous aide à couper.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤖</div>
+                    <h3 class="benefit-title">Les apps de bien-être génériques vous semblent trop naïves</h3>
+                    <p>Une approche rationnelle, sans langage de gourou, conçue pour les esprits analytiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Ingénierie appliquée au bien-être</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Diagnostic Précis</h3>
+                    <p>Répondez à un questionnaire court et percutant. Nous définissons votre profil unique.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Protocoles Adaptatifs</h3>
+                    <p>Chaque jour, recevez une recommandation sur-mesure basée sur votre humeur et votre agenda.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Micro-interventions</h3>
+                    <p>Des exercices validés scientifiquement, conçus pour s'intégrer dans vos interstices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ils ne jurent que par ça</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Enfin une app qui ne me prend pas pour un hippie. C'est court, efficace, et ça marche. Mon meilleur allié post-reunion."</p>
+                    <p class="testimonial-author">P.D., Ingénieur Logiciel</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"J'ai essayé Headspace, Calm... Trop long. Rockwhale me propose exactement ce dont j'ai besoin au bon moment."</p>
+                    <p class="testimonial-author">M.L., Chef de Projet</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Questions Fréquentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">En quoi est-ce différent de Calm ou Headspace?</div>
+                    <div class="faq-answer">Nous ne sommes pas une bibliothèque de contenus. Nous sommes un système de recommandation intelligent. Nous vous proposons l'exercice le plus pertinent pour vous, maintenant, point.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Comment protégez-vous mes données?</div>
+                    <div class="faq-answer">Avec une paranoïa d'ingénieur. Vos données sont chiffrées et ne quitteront jamais l'UE. Votre tranquillité d'esprit est notre priorité numéro 1.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Quel est le modèle économique?</div>
+                    <div class="faq-answer">Un abonnement mensuel ou annuel sans engagement. Nous détestons les pubs autant que vous.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="beta-form">
+        <div class="container">
+            <h2>Prêt à reprendre le contrôle ?</h2>
+            <p>Rejoignez un cercle restreint de bêta-testeurs. Accès gratuit pendant la période de test.</p>
+            <!-- Remplacez ceci par votre lien Google Forms -->
+            <a href="https://forms.google.com" class="cta-button">Rejoindre la Liste d'Attente</a>
+            <p style="margin-top: 20px; font-size: 0.9rem;">🔒 100% confidentiel. Pas de spam. Désinscription à tout moment.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Mentions légales</a>
+                <a href="#" class="footer-link">Politique de confidentialité</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p class="copyright">© 2023 Rockwhale. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
